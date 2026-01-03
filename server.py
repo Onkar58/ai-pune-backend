@@ -1082,13 +1082,6 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    print("START")
-    yield
-    print("STOP")
-
-
-# @app.on_event("shutdown")
-# async def shutdown_db_client():
-#     client.close()
+@app.on_event("shutdown")
+async def shutdown_db_client():
+    client.close()
